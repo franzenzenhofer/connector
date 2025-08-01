@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luminode - Offline</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Orbitron', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .offline-message {
+      padding: 40px;
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid rgba(255, 0, 0, 0.5);
+      border-radius: 16px;
+    }
+    h1 {
+      color: #ff6666;
+      margin: 0 0 20px 0;
+      font-size: 2.5rem;
+    }
+    p {
+      color: #ccc;
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    button {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-message">
+    <h1>🔌 OFFLINE MODE</h1>
+    <p>You are currently offline.</p>
+    <p>This is a minimal cached version.</p>
+    <p>Please connect to the internet for the full experience.</p>
+    <button onclick="location.reload()">RETRY CONNECTION</button>
+  </div>
+</body>
+</html>

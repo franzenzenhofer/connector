@@ -1,0 +1,59 @@
+{
+  "name": "luminode",
+  "version": "1.0.0",
+  "description": "A mathematically precise, hardware-accelerated connection puzzle game",
+  "type": "module",
+  "scripts": {
+    "predev": "pnpm check-all",
+    "dev": "vite --host --clearScreen=false",
+    "dev:verbose": "DEBUG=* vite --host --clearScreen=false --debug",
+    "prebuild": "pnpm check-all",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:vitest": "vitest",
+    "test:vitest-ui": "vitest --ui",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "type-check": "tsc --noEmit",
+    "check-all": "pnpm type-check && pnpm lint"
+  },
+  "dependencies": {
+    "@pixi/react": "^8.0.3",
+    "gsap": "^3.13.0",
+    "hammerjs": "^2.0.8",
+    "immer": "^10.1.1",
+    "matter-js": "^0.20.0",
+    "pixi.js": "^8.11.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "rxjs": "^7.8.2",
+    "tone": "^15.1.22",
+    "zustand": "^5.0.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/hammerjs": "^2.0.46",
+    "@types/matter-js": "^0.19.8",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "playwright": "^1.54.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.6",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

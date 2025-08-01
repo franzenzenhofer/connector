@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Luminode - A mathematically precise connection puzzle game" />
+  <title>Luminode • Hardcore Edition</title>
+  <!-- NO SERVICE WORKERS! NO OFFLINE PLAY! -->
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+    
+    body {
+      font-family: 'Orbitron', monospace;
+      background: #0a0a0a;
+      color: #fafafa;
+      overflow: hidden;
+      touch-action: none;
+    }
+    
+    #root {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .loading {
+      text-align: center;
+      color: oklch(80% 0.25 190);
+      font-size: 2rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading">LOADING...</div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
