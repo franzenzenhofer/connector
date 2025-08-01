@@ -1,17 +1,27 @@
 export type EasingFunction = (t: number) => number;
 
+/**
+ * Clamps a value between 0 and 1
+ */
 export const clamp01 = (t: number): number => 
   Math.max(0, Math.min(1, t));
 
 export const linear: EasingFunction = (t: number): number => 
   clamp01(t);
 
+/**
+ * Quintic ease-out: decelerating to zero velocity
+ */
 export const quinticEaseOut: EasingFunction = (t: number): number => {
   const u = clamp01(t);
   const u2 = u * u;
   return u2 * u * (10 - 15 * u + 6 * u2);
 };
 
+/**
+ * Quintic ease-in-out: f(u) = u³(6u² - 15u + 10)
+ * Smooth acceleration and deceleration with continuous derivatives
+ */
 export const quinticEaseInOut: EasingFunction = (t: number): number => {
   const u = clamp01(t);
   const u2 = u * u;
@@ -50,6 +60,9 @@ export const cubicEaseInOut: EasingFunction = (t: number): number => {
   return u < 0.5 ? 4 * u * u * u : (u - 1) * (2 * u - 2) * (2 * u - 2) + 1;
 };
 
+/**
+ * Elastic ease-out: exponentially decaying sine wave
+ */
 export const elasticEaseOut: EasingFunction = (t: number): number => {
   const u = clamp01(t);
   if (u === 0 || u === 1) return u;

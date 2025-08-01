@@ -37,9 +37,11 @@
       "@state/*": ["src/state/*"],
       "@procedural/*": ["src/procedural/*"],
       "@ui/*": ["src/ui/*"],
-      "@shaders/*": ["src/shaders/*"]
+      "@shaders/*": ["src/shaders/*"],
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "tests/**/*.ts", "playwright.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

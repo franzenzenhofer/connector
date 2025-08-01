@@ -1,6 +1,8 @@
-import { Graphics, Container, Text, TextStyle } from 'pixi.js';
+import { Container, Text, TextStyle, Graphics } from 'pixi.js';
 import { TileComponent, getTileConnectionMask } from '@game/components/tile';
 import { DIRECTION_MASKS, TAU } from '@math/constants';
+import { createGraphics, drawRoundedRect } from '@utils/graphics-factory';
+import { COLORS, SIZES, DURATIONS } from '@constants/colors';
 import gsap from 'gsap';
 
 export class TileRenderer {
@@ -13,8 +15,8 @@ export class TileRenderer {
   constructor(size: number) {
     this.size = size;
     this.container = new Container();
-    this.graphics = new Graphics();
-    this.glowGraphics = new Graphics();
+    this.graphics = createGraphics();
+    this.glowGraphics = createGraphics();
     
     this.container.addChild(this.glowGraphics);
     this.container.addChild(this.graphics);
@@ -31,11 +33,11 @@ export class TileRenderer {
     const cornerRadius = this.size * 0.1;
     
     // Draw base tile
-    this.graphics.beginFill(tile.lit ? 0x152525 : 0x1a1a1a);
-    this.graphics.lineStyle(2, tile.lit ? 0x00ffff : 0x444444);
-    this.graphics.roundRect(0, 0, this.size, this.size, cornerRadius);
-    this.graphics.fill();
-    this.graphics.endFill();
+    const fillColor = tile.lit ? 0x152525 : 0x1a1a1a;
+    const strokeColor = tile.lit ? 0x00ffff : 0x444444;
+    this.graphics.fill({ color: fillColor });
+    this.graphics.stroke({ color: strokeColor, width: 2 });
+    drawRoundedRect(this.graphics, 0, 0, this.size, this.size, cornerRadius);
     
     // Draw connection paths
     this.drawConnections(tile);
@@ -60,14 +62,14 @@ export class TileRenderer {
   private drawConnections(tile: TileComponent): void {
     const mask = getTileConnectionMask(tile);
     const halfSize = this.size / 2;
-    const pathWidth = this.size * 0.25;
-    const pathLength = this.size * 0.45;
+    const pathWidth = this.size * SIZES.PATH_WIDTH;
+    const pathLength = this.size * SIZES.PATH_LENGTH;
     
-    this.graphics.lineStyle(pathWidth, tile.lit ? 0x77ffff : 0x555555, 1);
+    this.graphics.lineStyle(pathWidth, tile.lit ? COLORS.PATH_LIT : COLORS.PATH_UNLIT, 1);
     
     if (tile.lit) {
       // Draw glow
-      this.glowGraphics.lineStyle(pathWidth * 1.5, 0x00ffff, 0.3);
+      this.glowGraphics.lineStyle(pathWidth * SIZES.GLOW_WIDTH_MULTIPLIER, COLORS.PATH_GLOW, 0.3);
       this.glowGraphics.filters = []; // Add bloom filter later
     }
     
@@ -124,9 +126,9 @@ export class TileRenderer {
   private drawSymbol(tile: TileComponent): void {
     const style = new TextStyle({
       fontFamily: 'Orbitron, monospace',
-      fontSize: this.size * 0.4,
+      fontSize: this.size * SIZES.SYMBOL_SIZE,
       fontWeight: '900',
-      fill: tile.lit ? 0xccffff : 0x00aaff,
+      fill: tile.lit ? COLORS.SYMBOL_LIT : COLORS.SYMBOL_UNLIT,
       align: 'center'
     });
     
@@ -142,12 +144,12 @@ export class TileRenderer {
     const targetRotation = newRotation * TAU / 4;
     gsap.to(this.graphics, {
       rotation: targetRotation,
-      duration: 0.3,
+      duration: DURATIONS.ROTATION,
       ease: 'power2.inOut'
     });
     gsap.to(this.glowGraphics, {
       rotation: targetRotation,
-      duration: 0.3,
+      duration: DURATIONS.ROTATION,
       ease: 'power2.inOut'
     });
   }
@@ -156,7 +158,7 @@ export class TileRenderer {
     const targetAlpha = lit ? 1 : 0;
     gsap.to(this.glowGraphics, {
       alpha: targetAlpha,
-      duration: 0.5,
+      duration: DURATIONS.LIGHT_FADE,
       ease: 'power2.out'
     });
   }

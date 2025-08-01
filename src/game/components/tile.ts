@@ -14,6 +14,9 @@ export interface TileComponent extends Component {
   lit: boolean;
 }
 
+/**
+ * Creates a new tile component
+ */
 export const createTile = (
   kind: TileKind,
   gridX: number,
@@ -28,6 +31,10 @@ export const createTile = (
   lit: false
 });
 
+/**
+ * Gets the connection mask for a tile accounting for its rotation
+ * Uses bit rotation to efficiently compute rotated connection patterns
+ */
 export const getTileConnectionMask = (tile: TileComponent): number => {
   const baseMasks: Record<TileKind, number> = {
     source: DIRECTION_MASKS.reduce((a, b) => a | b, 0), // All directions
@@ -40,10 +47,13 @@ export const getTileConnectionMask = (tile: TileComponent): number => {
   const base = baseMasks[tile.kind];
   const r = tile.rotation;
   
-  // Rotate the mask
+  // Rotate the mask using circular bit shift
   return ((base << r) | (base >>> (4 - r))) & 0b1111;
 };
 
+/**
+ * Checks if a tile can connect in a given direction
+ */
 export const canTileConnect = (tile: TileComponent, direction: Direction): boolean => {
   const mask = getTileConnectionMask(tile);
   return (mask & DIRECTION_MASKS[direction]) !== 0;

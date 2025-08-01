@@ -105,6 +105,7 @@ test.describe('Luminode Game Tests', () => {
     await page.screenshot({ path: 'tests/screenshots/after-interaction.png', fullPage: true });
     
     // Moves might or might not increase depending on if we clicked on a tile
+    // eslint-disable-next-line no-console
     console.log(`Moves: ${initialMovesCount} -> ${newMovesCount}`);
   });
 

@@ -85,7 +85,9 @@ export default defineConfig({
       '@state': path.resolve(__dirname, './src/state'),
       '@procedural': path.resolve(__dirname, './src/procedural'),
       '@ui': path.resolve(__dirname, './src/ui'),
-      '@shaders': path.resolve(__dirname, './src/shaders')
+      '@shaders': path.resolve(__dirname, './src/shaders'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@constants': path.resolve(__dirname, './src/constants')
     }
   },
   server: {
